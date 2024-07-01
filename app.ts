@@ -11,7 +11,7 @@ app.get('/api/hello', async (req: express.Request, res: express.Response) => {
 
   const client = req.query.visitor_name
 
-  const result = await ipLocate(req.ip)
+  const result = await ipLocate(req.socket.remoteAddress)
 
   res.json({
     "client_ip": req.ip,
