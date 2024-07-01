@@ -49,7 +49,6 @@ app.get('/api/hello', function (req, res) { return __awaiter(void 0, void 0, voi
                 return [4 /*yield*/, ipLocate(req.ip)];
             case 1:
                 result = _a.sent();
-                console.log(result);
                 res.json({
                     "client_ip": req.ip,
                     "location": result.city,
