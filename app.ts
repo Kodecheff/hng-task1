@@ -19,9 +19,9 @@ app.get('/api/hello', async (req: express.Request, res: express.Response) => {
     console.log(result)
   
     res.json({
-      "client_ip": result.ip,
+      "client_ip": ip_address,
       "location": result.city,
-      "greeting": `Hello, ${client}!, the temperature is 11 degrees Celcius in ${result.city}`
+      "greeting": `Hello, ${client}!, the temperature is 11 degrees Celcius in ${result.city}.`
     })
   }
   catch(err){

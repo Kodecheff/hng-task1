@@ -47,15 +47,15 @@ app.get('/api/hello', function (req, res) { return __awaiter(void 0, void 0, voi
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 client = req.query.visitor_name;
-                ip_address = req.headers['x-real-ip'] || req.connection.remoteAddress;
+                ip_address = req.headers['x-real-ip'];
                 return [4 /*yield*/, ipLocate(ip_address)];
             case 1:
                 result = _a.sent();
                 console.log(result);
                 res.json({
-                    "client_ip": result.ip,
+                    "client_ip": ip_address,
                     "location": result.city,
-                    "greeting": "Hello, ".concat(client, "!, the temperature is 10 degrees Celcius in ").concat(result.city)
+                    "greeting": "Hello, ".concat(client, "!, the temperature is 11 degrees Celcius in ").concat(result.city, ".")
                 });
                 return [3 /*break*/, 3];
             case 2:
