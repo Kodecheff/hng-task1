@@ -9,15 +9,22 @@ const port = 1999
 
 app.get('/api/hello', async (req: express.Request, res: express.Response) => {
 
-  const client = req.query.visitor_name
+  try{
+    const client = req.query.visitor_name
 
-  const result = await ipLocate(req.socket.remoteAddress)
-
-  res.json({
-    "client_ip": req.ip,
-    "location": result.city,
-    "greeting": `Hello, ${client}!, the temperature is 11 degrees Celcius in ${result.city}`
-  })
+    const ip_address = req.headers['x-real-ip'] || req.connection.remoteAddress;
+  
+    const result = await ipLocate(ip_address)
+  
+    res.json({
+      "client_ip": req.ip,
+      "location": result.city,
+      "greeting": `Hello, ${client}!, the temperature is 10 degrees Celcius in ${result.city}`
+    })
+  }
+  catch(err){
+    console.log(err)
+  }
 })
 
 

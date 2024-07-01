@@ -41,20 +41,27 @@ var ipLocate = require("node-iplocate");
 var app = express();
 var port = 1999;
 app.get('/api/hello', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var client, result;
+    var client, ip_address, result, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 2, , 3]);
                 client = req.query.visitor_name;
-                return [4 /*yield*/, ipLocate(req.ip)];
+                ip_address = req.headers['x-real-ip'] || req.connection.remoteAddress;
+                return [4 /*yield*/, ipLocate(ip_address)];
             case 1:
                 result = _a.sent();
                 res.json({
                     "client_ip": req.ip,
                     "location": result.city,
-                    "greeting": "Hello, ".concat(client, "!, the temperature is 11 degrees Celcius in ").concat(result.city)
+                    "greeting": "Hello, ".concat(client, "!, the temperature is 10 degrees Celcius in ").concat(result.city)
                 });
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                console.log(err_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); });
