@@ -12,7 +12,7 @@ app.get('/api/hello', async (req: express.Request, res: express.Response) => {
   try{
     const client = req.query.visitor_name
 
-    const ip_address = req.headers['x-real-ip'] || req.connection.remoteAddress;
+    const ip_address = req.headers['x-real-ip']
   
     const result = await ipLocate(ip_address)
 
@@ -21,7 +21,7 @@ app.get('/api/hello', async (req: express.Request, res: express.Response) => {
     res.json({
       "client_ip": result.ip,
       "location": result.city,
-      "greeting": `Hello, ${client}!, the temperature is 10 degrees Celcius in ${result.city}`
+      "greeting": `Hello, ${client}!, the temperature is 11 degrees Celcius in ${result.city}`
     })
   }
   catch(err){
