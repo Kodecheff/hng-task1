@@ -15,9 +15,11 @@ app.get('/api/hello', async (req: express.Request, res: express.Response) => {
     const ip_address = req.headers['x-real-ip'] || req.connection.remoteAddress;
   
     const result = await ipLocate(ip_address)
+
+    console.log(result)
   
     res.json({
-      "client_ip": ip_address,
+      "client_ip": result.ip,
       "location": result.city,
       "greeting": `Hello, ${client}!, the temperature is 10 degrees Celcius in ${result.city}`
     })
