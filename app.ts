@@ -17,7 +17,7 @@ app.get('/api/hello', async (req: express.Request, res: express.Response) => {
     const result = await ipLocate(ip_address)
   
     res.json({
-      "client_ip": req.ip,
+      "client_ip": ip_address,
       "location": result.city,
       "greeting": `Hello, ${client}!, the temperature is 10 degrees Celcius in ${result.city}`
     })
